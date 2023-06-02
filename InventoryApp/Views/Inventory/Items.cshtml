@@ -1,0 +1,32 @@
+﻿@using InventoryApp.Entities;
+@{
+    ViewData["Title"] = "All";
+}
+
+<h3>@ViewData["Title"]</h3>
+<a asp-controller="Inventory" asp-action="Add">Add an Inventory</a>
+<table class=" table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ProductContent</th>
+            <th>DataOfInventory</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Inventory inventory in Model)
+        {
+            <tr>
+                <td>@inventory.ProductContent</td>
+                <td>@inventory.DataOfInventory.ToShortDateString() </td>
+                <td>@inventory.Quantity</td>
+                <td>
+                    <a asp-controller="Inventory" asp-action="Edit" asp-route-id="@inventory.InventoryId">Edit</a>
+                    <span class="action-spacer mx-1">|</span>
+                    <a asp-controller="Inventory" asp-action="Details" asp-route-id="@inventory.InventoryId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
